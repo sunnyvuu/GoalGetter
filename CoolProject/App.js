@@ -33,7 +33,7 @@ export default function App() {
         <FlatList 
           data={goals} 
           renderItem={(itemData) => {
-            return <GoalItem/>;
+            return <GoalItem text={itemData.item.text} />;
           }}
         />
 
