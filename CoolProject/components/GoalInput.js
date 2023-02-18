@@ -14,7 +14,7 @@ function GoalInput(props) {
     }
 
     return (
-      <Modal>
+      <Modal visible={props.visible} animationType="slide">
         <View style={styles.inputContainer}>
           <TextInput placeholder='Enter your goal here'
             style={styles.textInput} 
@@ -22,6 +22,10 @@ function GoalInput(props) {
             value={enteredGoalText}
           />
           <Button title='Add Goal' onPress={addGoalHandler}/>
+          
+        </View>
+        <View>
+          <Button title='Cancel' onPress={props.closeModal}/>
         </View>
       </Modal>
         
