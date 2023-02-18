@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, View, FlatList, Button } from 'react-native';
+import { StyleSheet, View, FlatList, Button, Pressable, Text } from 'react-native';
 
 import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput';
@@ -37,10 +37,14 @@ export default function App() {
         visible={modalIsVisible} 
         closeModal={closeAddGoalHandler}
       />
-      <View>
-        <Button title='Add New Goal' color={'pink'} onPress={startAddGoalHandler} />
+      <View style={styles.addGoalContainer}>
+        <Pressable>
+          <View style={styles.addGoalButton}>
+            <Text onPress={startAddGoalHandler}>Add New Goal</Text>
+          </View>
+        </Pressable>
       </View>
-      <View style={styles.goalsContainer}>
+      <View style={styles.goalsContainer} >
         <FlatList 
           data={goals} 
           renderItem={(itemData) => {
@@ -57,8 +61,23 @@ const styles = StyleSheet.create({
     flex: 1, 
     padding: 50,
     paddingHorizontal: 16,
+    backgroundColor: "pink",
   },
   goalsContainer: {
     flex: 5
+  },
+  addGoalContainer: {
+    alignItems: 'center',
+    justifyContent: "center",
+  }, 
+  addGoalButton: {
+    backgroundColor: "white",
+    width: 200,
+    height: 50,
+    margin: 8,
+    padding: 8,
+    borderRadius: 25,
+    alignItems: 'center',
+    justifyContent: "center",
   }
 });
