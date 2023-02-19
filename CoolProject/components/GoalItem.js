@@ -1,16 +1,18 @@
-import { StyleSheet, View, Text, Pressable } from "react-native";
+import { StyleSheet, View, Text, Pressable, Image } from "react-native";
 
 function GoalItem(props) {
     return (
         <View style={styles.goalContainer}>
             <View style= {styles.goalItemContainer}>
                 <Text style={styles.goalItem}>{props.text}</Text>
+                <Pressable onPress={props.onDeleteItem.bind(this, props.id)}>
+                    <Image source={require('../assets/images/checkmark.png')} style={styles.image} />
+                </Pressable>
+                <Pressable onPress={props.onDeleteItem.bind(this, props.id)}>
+                    <Image source={require('../assets/images/trash.png')} style={styles.image} />
+                </Pressable>
+
             </View>
-            <Pressable onPress={props.onDeleteItem.bind(this, props.id)}>
-                <View style={styles.CustomButton}>
-                    <Text>Completed!</Text>
-                </View>
-            </Pressable>
         </View>
         
     )
@@ -24,24 +26,19 @@ const styles = StyleSheet.create({
       alignContent: "space-between",
     },
     goalItemContainer: {
-        flexShrink: 1,
-        flexBasis: "auto",
-        flexGrow: 1,
+        flexDirection: "row",
     },
     goalItem: {
         marginTop: 8,
         marginBottom: 8,
         padding: 8,
         borderRadius: 6,
-        backgroundColor: "#f0dadb"
-      },
-      CustomButton: {
-        flexShrink: 0,
-        flexBasis: "auto",
-        flexGrow: 0,
-        backgroundColor: "pink",
-        margin: 8,
-        padding: 8,
-        borderRadius: 6,
-      }
+        backgroundColor: "white",
+        width: "71%"
+    },
+    image: {
+        width: 40,
+        height: 40,
+        margin: 5,
+    }
 });
