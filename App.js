@@ -6,7 +6,6 @@ import GoalInput from './components/GoalInput';
 
 export default function App() {
   const [goals, setGoals] = useState([]);
-  const [completedGoals, setCompletedGoals] = useState(goals);
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
   function startAddGoalHandler() {
@@ -31,13 +30,6 @@ export default function App() {
     });
   } 
 
-  function addCompletedGoalHandler(id) {
-    setCompletedGoals(currentGoals => {
-      return currentGoals.filter((goal) => goal.id == id);
-    });
-    console.log(completedGoals);
-  } 
-
   return (
     <View style={styles.appContainer}>
       <GoalInput 
@@ -56,7 +48,7 @@ export default function App() {
         <FlatList 
           data={goals} 
           renderItem={(itemData) => {
-            return <GoalItem text={itemData.item.text} onDeleteItem={deleteGoalHandler} id={itemData.item.id} addCompleteGoal={addCompletedGoalHandler}/>;
+            return <GoalItem text={itemData.item.text} onDeleteItem={deleteGoalHandler} id={itemData.item.id}/>;
           }}
         />
       </View>
