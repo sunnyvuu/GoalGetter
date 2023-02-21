@@ -18,12 +18,12 @@ function GoalItem(props) {
           {completed ? (
             <Image
               source={require("../assets/images/checkmark.png")}
-              style={styles.image}
+              style={styles.checkImage}
             />
           ) : (
             <Image
               source={require("../assets/images/open-circle.png")}
-              style={styles.image}
+              style={styles.checkImage}
             />
           )}
         </Pressable>
@@ -33,7 +33,7 @@ function GoalItem(props) {
         <Pressable onPress={props.onDeleteItem.bind(this, props.id)}>
           <Image
             source={require("../assets/images/trash.png")}
-            style={styles.image}
+            style={styles.trashImage}
           />
         </Pressable>
       </View>
@@ -59,7 +59,13 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     width: "75%",
   },
-  image: {
+  checkImage: {
+    width: 40,
+    height: 40,
+    margin: 5,
+    marginLeft: 0,
+  },
+  trashImage: {
     width: 40,
     height: 40,
     margin: 5,
