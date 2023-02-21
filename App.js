@@ -1,8 +1,15 @@
-import { useState } from 'react';
-import { StyleSheet, View, FlatList, Button, Pressable, Text } from 'react-native';
+import { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  Button,
+  Pressable,
+  Text,
+} from "react-native";
 
-import GoalItem from './components/GoalItem';
-import GoalInput from './components/GoalInput';
+import GoalItem from "./components/GoalItem";
+import GoalInput from "./components/GoalInput";
 
 export default function App() {
   const [goals, setGoals] = useState([]);
@@ -17,24 +24,24 @@ export default function App() {
   }
 
   function addGoalHandler(enteredGoalText) {
-      setGoals((currentGoals) => [
-      ...currentGoals, 
-      {text: enteredGoalText, id: Math.random().toString()}
-      ]);
-      closeAddGoalHandler();
-  } 
+    setGoals((currentGoals) => [
+      ...currentGoals,
+      { text: enteredGoalText, id: Math.random().toString() },
+    ]);
+    closeAddGoalHandler();
+  }
 
   function deleteGoalHandler(id) {
-    setGoals(currentGoals => {
+    setGoals((currentGoals) => {
       return currentGoals.filter((goal) => goal.id !== id);
     });
-  } 
+  }
 
   return (
     <View style={styles.appContainer}>
-      <GoalInput 
+      <GoalInput
         onAddGoal={addGoalHandler}
-        visible={modalIsVisible} 
+        visible={modalIsVisible}
         closeModal={closeAddGoalHandler}
       />
       <View style={styles.addGoalContainer}>
@@ -44,11 +51,17 @@ export default function App() {
           </View>
         </Pressable>
       </View>
-      <View style={styles.goalsContainer} >
-        <FlatList 
-          data={goals} 
+      <View style={styles.goalsContainer}>
+        <FlatList
+          data={goals}
           renderItem={(itemData) => {
-            return <GoalItem text={itemData.item.text} onDeleteItem={deleteGoalHandler} id={itemData.item.id}/>;
+            return (
+              <GoalItem
+                text={itemData.item.text}
+                onDeleteItem={deleteGoalHandler}
+                id={itemData.item.id}
+              />
+            );
           }}
         />
       </View>
@@ -58,18 +71,18 @@ export default function App() {
 
 const styles = StyleSheet.create({
   appContainer: {
-    flex: 1, 
+    flex: 1,
     padding: 50,
     paddingHorizontal: 16,
-    backgroundColor: "pink",
+    backgroundColor: "#f0cccc",
   },
   goalsContainer: {
-    flex: 5
+    flex: 5,
   },
   addGoalContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     justifyContent: "center",
-  }, 
+  },
   addGoalButton: {
     backgroundColor: "white",
     width: 200,
@@ -77,7 +90,7 @@ const styles = StyleSheet.create({
     margin: 8,
     padding: 8,
     borderRadius: 25,
-    alignItems: 'center',
+    alignItems: "center",
     justifyContent: "center",
-  }
+  },
 });
