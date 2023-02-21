@@ -1,5 +1,15 @@
 import { useState } from "react";
-import { StyleSheet, View, TextInput, Button, Modal } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  Pressable,
+  Modal,
+  Text,
+  Image,
+  Button,
+  KeyboardAvoidingView,
+} from "react-native";
 
 function GoalInput(props) {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -15,7 +25,13 @@ function GoalInput(props) {
 
   return (
     <Modal visible={props.visible} animationType="slide">
-      <View style={styles.inputContainer}>
+      <KeyboardAvoidingView style={styles.inputContainer} behavior="padding">
+        <Text style={styles.text}>Do It For Her</Text>
+        <Image
+          source={require("../assets/images/moony-support.jpg")}
+          style={styles.image}
+        />
+
         <TextInput
           placeholder="Enter your goal here"
           style={styles.textInput}
@@ -24,14 +40,18 @@ function GoalInput(props) {
         />
 
         <View style={styles.buttonContainer}>
-          <View style={styles.button}>
-            <Button title="Cancel" onPress={props.closeModal} />
-          </View>
-          <View style={styles.button}>
-            <Button title="Add Goal" onPress={addGoalHandler} />
-          </View>
+          <Pressable
+            onPress={props.closeModal}
+            style={[styles.button, { backgroundColor: "#bdb7b7" }]}
+          >
+            <Text>Cancel</Text>
+          </Pressable>
+
+          <Pressable onPress={addGoalHandler} style={styles.button}>
+            <Text>Add Goal</Text>
+          </Pressable>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 }
@@ -44,25 +64,39 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 24,
     borderBottomWidth: 1,
     borderBottomColor: "#cccccc",
-    backgroundColor: "pink",
+    backgroundColor: "#f0cccc",
+  },
+  text: {
+    fontWeight: "bold",
+    fontSize: 18,
   },
   textInput: {
-    borderWidth: 1,
     width: "80%",
-    padding: 8,
+    padding: 10,
     borderRadius: 10,
     backgroundColor: "white",
   },
+  image: {
+    width: 300,
+    height: 300,
+    borderRadius: 25,
+    marginBottom: 10,
+  },
   buttonContainer: {
-    marginTop: 16,
+    marginTop: 8,
     flexDirection: "row",
     justifyContent: "center",
   },
   button: {
-    width: 100,
-    marginHorizontal: 8,
+    backgroundColor: "white",
+    width: 125,
+    height: 40,
+    margin: 8,
+    padding: 8,
+    borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
